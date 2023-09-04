@@ -2,7 +2,7 @@
 Modifikasilah kode pada baris 3 di VS Code atau Editor Code favorit Anda berikut ini agar mendapatkan keluaran (output) sesuai yang diminta!
 
 ## jawaban
-![Jawaban](http://url/to/img.png)
+![Jawaban](https://raw.githubusercontent.com/Ziedny28/2141720117-mobile-2023/main/week-02/docs/images/Screenshot%202023-09-04%20115313.png)
 
 
 # Soal 2
