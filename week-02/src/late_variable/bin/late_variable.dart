@@ -3,7 +3,7 @@ class Student{
   late String nim;
   late int age;
   late String city;
-
+  
   Student(this.name, this.nim, this.age, this.city); //constructor
   String getStudent() => 'Name :$name\nNim :$nim\nAge :$age\nCity :$city';
 }
