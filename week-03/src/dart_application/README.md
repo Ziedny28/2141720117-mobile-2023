@@ -109,5 +109,17 @@ Masalah selanjutnya adalah tidak ada yang di print, solusinya adalah mengubah ||
 
 ![Jawaban](https://raw.githubusercontent.com/Ziedny28/2141720117-mobile-2023/main/week-03/docs/Images/prak-3-langkah-3-03.png) 
 
-Penjelasan Kode: Hal ini dikarenakan operator || akan membuat continue dijalankan karena salah satu dari kondisi bernilai benar(index > 1) yang membuat tidak ada nilai yang dicetak karena continue dijalankan
+Penjelasan Kode: Hal ini dikarenakan operator || akan membuat continue dijalankan karena salah satu dari kondisi bernilai benar(index > 1) yang membuat tidak ada nilai yang dicetak karena continue dijalankan.
 
+## Tugas Bilangan Prima
+
+### **Screenshot**
+
+![Jawaban](https://raw.githubusercontent.com/Ziedny28/2141720117-mobile-2023/main/week-03/docs/Images/tugas-bilangan-prima.png) 
+
+
+### **Penjelasan**
+
+Pada fungsi **main**, akan dilakukan loop sebanyak 201 kali untuk mengetahui apakah ada bilangan prima pada range tersebut, kemudian untuk tiap angka akan dipanggil fungsi is prime dengan parameter tiap angka pada range tersebut, jika nilai yang direturn adalah true, pada operator ternary, akan dicetak nama, nim, dan angka yang merupakan bilangan prima, jika tidak, maka tidak akan terjadi apa apa.
+
+Pada fungsi **isPrime**, kita butuh parameter angka, yang kita dapat dari loop pada fungsi main, kemudian dilakukan pembagian dengan angka 1 hingga angka tersebut, jika hasil dari pembagiannya menyisakan 0, maka variable count akan ditambah 1, hal ini untuk mengetahui apakah hanya 2 pembagi yang tidak bersisa, jika iya maka nilai yang direturn adalah true.
