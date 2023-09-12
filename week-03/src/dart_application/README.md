@@ -10,7 +10,7 @@ Ketik atau salin kode program berikut ke dalam fungsi main().
 
 **Jawaban**
 
-![Jawaban](Link-to-image) 
+![Jawaban](https://raw.githubusercontent.com/Ziedny28/2141720117-mobile-2023/main/week-03/docs/Images/prak-1-langkah-1.png) 
 
 ### Langkah 2
 
@@ -25,7 +25,7 @@ Yang terjadi adalah kita mencetak Test2 dan Test2 again, hal ini dikarenakan nil
 
 Tambahkan kode program berikut, lalu coba eksekusi (Run) kode Anda.
 
-![Jawaban](Link-to-image) 
+![Jawaban](https://raw.githubusercontent.com/Ziedny28/2141720117-mobile-2023/main/week-03/docs/Images/prak-1-langkah-3.png) 
 
 Apa yang terjadi ? Jika terjadi error, silakan perbaiki namun tetap menggunakan if/else.
 
@@ -33,11 +33,11 @@ Apa yang terjadi ? Jika terjadi error, silakan perbaiki namun tetap menggunakan 
 
 Yang terjadi adalah error karena variable bernama test sudah ada dideklarasi diatas, hal ini dapat diatasi dengan menghapus baris kode sebelumnya, atau membuat file baru, disini saya membuat file baru
 
-![Jawaban](Link-to-image) 
+![Jawaban](https://raw.githubusercontent.com/Ziedny28/2141720117-mobile-2023/main/week-03/docs/Images/prak-1-langkah-3-02.png) 
 
 namun akan terjadi error lain yang disebebkan karena variable test memiliki tipe data string dan bukan boolean, solusinya adalah dengan mengubah tipe data dan valuenya tanpa ""
 
-![Jawaban](Link-to-image) 
+![Jawaban](https://raw.githubusercontent.com/Ziedny28/2141720117-mobile-2023/main/week-03/docs/Images/prak-1-langkah-3-03.png) 
 
 penjelasan kode: karena test bernilai true, maka if statement akan dijalankan dan kebenaran akan dicetak
 
@@ -48,7 +48,7 @@ Selesaikan langkah-langkah praktikum berikut ini menggunakan DartPad di browser 
 ### Langkah 1:
 Ketik atau salin kode program berikut ke dalam fungsi main().
 
-![Jawaban](Link-to-image) 
+![Jawaban](https://raw.githubusercontent.com/Ziedny28/2141720117-mobile-2023/main/week-03/docs/Images/prak-2-langkah-1.png) 
 
 ### Langkah 2:
 Silakan coba eksekusi (Run) kode pada langkah 1 tersebut. Apa yang terjadi? Jelaskan! Lalu perbaiki jika terjadi error.
@@ -56,15 +56,15 @@ Silakan coba eksekusi (Run) kode pada langkah 1 tersebut. Apa yang terjadi? Jela
 **Jawaban**
 Terdapat error, hal ini dikarenakan kita belum melakukan deklarasi dan inisialisasi untuk variable counter, solusinya adalah dengan melakukan deklarasi dan inisialisasi sebelum kode dijalankan
 
-![Jawaban](Link-to-image) 
+![Jawaban](https://raw.githubusercontent.com/Ziedny28/2141720117-mobile-2023/main/week-03/docs/Images/prak-2-langkah-1-02.png) 
 
-Penjelasan kode: karena dilakukan while loop dengan value counter awal 0, dan akan berjalan hingga value dari counter menjadi 33, maka akan dicetak 0 hingga 32
+Penjelasan kode: karena dilakukan while loop dengan value counter awal 0, dan akan berjalan hingga value dari counter menjadi 33, maka akan dicetak 0 hingga 32, hal ini dikarenakan akan dilakukan pengecekan sebelum print dijalankan, yang menyebabkan 33 melebihi batas dan tidak di print
  
 
 ### Langkah 3:
 Tambahkan kode program berikut, lalu coba eksekusi (Run) kode Anda.
 
-![Jawaban](Link-to-image) 
+![Jawaban](https://raw.githubusercontent.com/Ziedny28/2141720117-mobile-2023/main/week-03/docs/Images/prak-2-langkah-3-02.png) 
 
 Apa yang terjadi ? Jika terjadi error, silakan perbaiki namun tetap menggunakan do-while.
 
@@ -79,23 +79,23 @@ Selesaikan langkah-langkah praktikum berikut ini menggunakan DartPad di browser 
 ### Langkah 1:
 Ketik atau salin kode program berikut ke dalam fungsi main().
 
-![Jawaban](Link-to-image) 
+![Jawaban](https://raw.githubusercontent.com/Ziedny28/2141720117-mobile-2023/main/week-03/docs/Images/prak-3-langkah-1.png) 
 
 ### Langkah 2:
 Silakan coba eksekusi (Run) kode pada langkah 1 tersebut. Apa yang terjadi? Jelaskan! Lalu perbaiki jika terjadi error.
 
 **Jawaban**
 
-akan terjadi error, hal ini dikarenakan variable Index belum terdeklarasi, hal lain yang menyebabkan error adalah karena variable Index dipanggil dengan index yang merupakan perbedaan nama variable, solusinya adalah menyamakan nama variable. Masalah selanjutnya adalah terjadinya infinite loops yang menyebabkan loop tanpa akhir, hal ini dikarenakan kita tidak perubahan nilai pada variable index. solusinya adalah sebagai berikut 
+akan terjadi error, hal ini dikarenakan variable Index belum terdeklarasi, hal lain yang menyebabkan error adalah karena variable Index dipanggil dengan index yang merupakan perbedaan nama variable, solusinya adalah menyamakan nama variable. Masalah selanjutnya adalah terjadinya infinite loops yang menyebabkan loop tanpa akhir, hal ini dikarenakan kita tidak perubahan nilai pada variable index. solusinya adalah menyamakan nama variable dan mengubah nilai dari variable index dengan ++ sebagai berikut 
 
-![Jawaban](Link-to-image) 
+![Jawaban](https://raw.githubusercontent.com/Ziedny28/2141720117-mobile-2023/main/week-03/docs/Images/prak-3-langkah-1-02.png) 
 
 
 ### Langkah 3
 
 Tambahkan kode program berikut di dalam for-loop, lalu coba eksekusi (Run) kode Anda.
 
-![Jawaban](Link-to-image) 
+![Jawaban](https://raw.githubusercontent.com/Ziedny28/2141720117-mobile-2023/main/week-03/docs/Images/prak-3-langkah-3.png) 
 
 Apa yang terjadi ? Jika terjadi error, silakan perbaiki namun tetap menggunakan for dan break-continue.
 
@@ -103,11 +103,11 @@ Apa yang terjadi ? Jika terjadi error, silakan perbaiki namun tetap menggunakan 
 
 Yang terjadi adalah error, hal ini dikarenakan penggunaan huruf kapital pada sintaks yang seharusnya menggunakan huruf kecil, kemudian akan lebih baik jiak if dan else if memiliki {}, solusinya adalah sebagai berikut
 
-![Jawaban](Link-to-image) 
+![Jawaban](https://raw.githubusercontent.com/Ziedny28/2141720117-mobile-2023/main/week-03/docs/Images/prak-3-langkah-3-02.png) 
 
 Masalah selanjutnya adalah tidak ada yang di print, solusinya adalah mengubah || menjadi &&
 
-![Jawaban](Link-to-image) 
+![Jawaban](https://raw.githubusercontent.com/Ziedny28/2141720117-mobile-2023/main/week-03/docs/Images/prak-3-langkah-3-03.png) 
 
 Penjelasan Kode: Hal ini dikarenakan operator || akan membuat continue dijalankan karena salah satu dari kondisi bernilai benar(index > 1) yang membuat tidak ada nilai yang dicetak karena continue dijalankan
 
