@@ -181,6 +181,75 @@ Apa yang terjadi ? Jika terjadi error, silakan perbaiki. Jelaskan manfaat Collec
 
 Yang terjadi adalah kita dapat melakukan loop yang akan membrikan nilai pada list, disini dapat dilihat pada `for(var i in listOfInts) '#$i' ` disini loop ditentukan nilai dari variable `listOfInts` yang mana nilainya adalah 1,2 dan 3, yang membuatnya dijalankan 3 kali, menambah nilai pada listnya dengan #1, #2, dan #3
 
+## Praktikum 5: Eksperimen Tipe Data Records
+
+### Langkah 1
+
+Ketik atau salin kode program berikut ke dalam fungsi main().
+
+![image](https://raw.githubusercontent.com/Ziedny28/2141720117-mobile-2023/main/week-04/docs/images/prak-5-langkah-1.png)
+
+### Langkah 2
+
+Silakan coba eksekusi (Run) kode pada langkah 1 tersebut. Apa yang terjadi? Jelaskan! Lalu perbaiki jika terjadi error.
+
+**Jawaban**
+
+Yang terjadi adalah kita membuat variable Record dengan () yang merupakan immutable, Seperti tipe koleksi lainnya, record memungkinkan menggabungkan beberapa objek menjadi satu objek. Tidak seperti tipe koleksi lainnya, record merupakan fixed-size, heterogen, dan typed.
+
+Record dapat menyimpan variabel, nest variable, pass ke atau dari fungsi, dan menyimpannya dalam struktur data seperti list, map, dan set.
+
+### Langkah 3
+
+Tambahkan kode program berikut di luar scope void main(), lalu coba eksekusi (Run) kode Anda.
+
+![image](https://raw.githubusercontent.com/Ziedny28/2141720117-mobile-2023/main/week-04/docs/images/prak-5-langkah-3.png)
+
+Apa yang terjadi ? Jika terjadi error, silakan perbaiki. Gunakan fungsi tukar() di dalam main() sehingga tampak jelas proses pertukaran value field di dalam Records.
+
+**Jawaban**
+
+![image](https://raw.githubusercontent.com/Ziedny28/2141720117-mobile-2023/main/week-04/docs/images/prak-5-langkah-3-1.png)
+
+yang terjadi adalah kita membuat tukar yang dapat menukar nilai, tukar membutuhkan argumen berupa record, yang memiliki dua nilai integer, yang kemudian dikembalikan nilainya dibalik .
+
+pada fungsi main, saya membuat variable record bernilai 1 dan 2 pada `var recordNum = (1,2);` kemudian memanggil tukar pada `recordNum = tukar(recordNum);` dan menukarnya
+
+### Langkah 4
+
+Tambahkan kode program berikut di dalam scope void main(), lalu coba eksekusi (Run) kode Anda.
+
+![image](https://raw.githubusercontent.com/Ziedny28/2141720117-mobile-2023/main/week-04/docs/images/prak-5-langkah-4.png)
+
+Apa yang terjadi ? Jika terjadi error, silakan perbaiki. Inisialisasi field nama dan NIM Anda pada variabel record mahasiswa di atas. Dokumentasikan hasilnya dan buat laporannya!
+
+**Jawaban**
+
+![image](https://raw.githubusercontent.com/Ziedny28/2141720117-mobile-2023/main/week-04/docs/images/prak-5-langkah-4-1.png)
+
+yang terjadi adalah kita membuat record dengan tipe data String dan intege, kemudian sebelumnya terjadi error karena valuenya masih null, solusinya adalah diberikan value, pada `mahasiswa = ("Ziedny Bisma Mubarok", 2141720117);`
+
+
+### Langkah 5
+
+Tambahkan kode program berikut di dalam scope void main(), lalu coba eksekusi (Run) kode Anda.
+
+![image](https://raw.githubusercontent.com/Ziedny28/2141720117-mobile-2023/main/week-04/docs/images/prak-5-langkah-5.png)
+
+
+Apa yang terjadi ? Jika terjadi error, silakan perbaiki. Gantilah salah satu isi record dengan nama dan NIM Anda, lalu dokumentasikan hasilnya dan buat laporannya!
+
+**Jawaban**
+
+![image](https://raw.githubusercontent.com/Ziedny28/2141720117-mobile-2023/main/week-04/docs/images/prak-5-langkah-5-1.png)
+
+yang terjadi adalah kita membuat record, dan disini adalah bagaimana kita dapat mengakses suatu value record, 
+
+kemudian nilai diubah dengan nim dan nama
+
+kemudian
+
+
 ## Tugas Praktikum
 
 1. Silakan selesaikan Praktikum 1 sampai 5, lalu dokumentasikan berupa screenshot hasil pekerjaan Anda beserta penjelasannya!
