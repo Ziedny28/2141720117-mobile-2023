@@ -373,4 +373,32 @@ void main() {
 
 7. Jelaskan dengan contoh cara membuat return multiple value di Functions!
 
+- Menggunakan record
+
+Berikut adalah contoh cara membuat return multiple value dengan menggunakan record:
+
+```dart
+
+// Fungsi returnMultipleValue
+int returnMultipleValue(int number, String text) {
+  return (number, text);
+}
+
+//main
+var result = returnMultipleValue(1,"example")
+```
+
+- Menggunakan list
+
+Berikut adalah contoh cara membuat return multiple value dengan menggunakan list
+
+```dart
+List<dynamic> returnMultipleValue(int number, String text) {
+  return [number, text];
+}
+
+//main
+var result = returnMultipleValue(1,"example")
+```
+
 Kumpulkan berupa link commit repo GitHub pada tautan yang telah disediakan di grup Telegram!
