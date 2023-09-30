@@ -29,6 +29,10 @@ Jika sudah selesai proses pembuatan project baru, pastikan tampilan seperti beri
 
 ## Praktikum 2: Membuat Repository GitHub dan Laporan Praktikum
 
+source code sudah terupload pada github pada tautan berikut
+[github minggu 5](https://github.com/Ziedny28/2141720117-mobile-2023/tree/main/week-05/src/hello_world)
+![image](images/prak-2.png)
+
 ## Praktikum 3: Menerapkan Widget Dasar
 
 ## Langkah 1: Text Widget
@@ -365,3 +369,104 @@ class MyApp extends StatelessWidget {
   }
 }
 ```
+
+![image](images/prak-5-langkah-5.jpeg)
+
+### Langkah 6: Date and Time Pickers
+
+Date and Time Pickers termasuk pada kategori input dan selection widget, berikut adalah contoh penggunaan Date and Time Pickers.
+
+```dart
+import 'dart:async';
+import 'package:flutter/material.dart';
+
+void main() => runApp(const MyApp());
+
+class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return const MaterialApp(
+      title: 'Contoh Date Picker',
+      home: MyHomePage(title: 'Contoh Date Picker'),
+    );
+  }
+}
+
+class MyHomePage extends StatefulWidget {
+  const MyHomePage({Key? key, required this.title}) : super(key: key);
+
+  final String title;
+
+  @override
+  _MyHomePageState createState() => _MyHomePageState();
+}
+
+class _MyHomePageState extends State<MyHomePage> {
+  // Variable/State untuk mengambil tanggal
+  DateTime selectedDate = DateTime.now();
+
+  //  Initial SelectDate FLutter
+  Future<void> _selectDate(BuildContext context) async {
+    // Initial DateTime FIinal Picked
+    final DateTime? picked = await showDatePicker(
+        context: context,
+        initialDate: selectedDate,
+        firstDate: DateTime(2015, 8),
+        lastDate: DateTime(2101));
+    if (picked != null && picked != selectedDate) {
+      setState(() {
+        selectedDate = picked;
+      });
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(widget.title),
+      ),
+      body: Center(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: <Widget>[
+            Text("${selectedDate.toLocal()}".split(' ')[0]),
+            const SizedBox(
+              height: 20.0,
+            ),
+            ElevatedButton(
+              onPressed: () => {
+                _selectDate(context),
+                // ignore: avoid_print
+                print(selectedDate.day + selectedDate.month + selectedDate.year)
+              },
+              child: const Text('Pilih Tanggal'),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+```
+
+![image](images/prak-5-langkah-6.jpeg)
+
+![image](images/prak-5-langkah-6-2.jpeg)
+
+## Tugas
+
+### Selesaikan Praktikum 1 sampai 4, lalu dokumentasikan dan push ke repository Anda berupa screenshot setiap hasil pekerjaan beserta penjelasannya di file README.md!
+
+### Pada praktikum 4 mulai dari Langkah 3 sampai 6, buatlah file widget tersendiri di folder basic_widgets, kemudian pada file main.dart cukup melakukan import widget sesuai masing-masing langkah tersebut!
+
+### Selesaikan [Codelabs: Your first Flutter app](https://codelabs.developers.google.com/codelabs/flutter-codelab-first#0), lalu buatlah laporan praktikumnya dan push ke repository GitHub Anda!
+
+![gif](images/codelab.gif)
+file hasil terdapat pada [link source code]()
+
+### README.md berisi: capture hasil akhir tiap praktikum (side-by-side, bisa juga berupa file GIF agar terlihat proses perubahan ketika ada aksi dari pengguna) di browser dan perangkat fisik (device) dengan menampilkan NIM dan Nama Anda sebagai ciri pekerjaan Anda. Jika mode developer di perangkat HP Anda belum aktif, silakan cari di internet cara mengaktifkannya!
+
+### Kumpulkan berupa link repository/commit GitHub Anda ke tautan spreadsheet yang telah disepakati oleh dosen!
