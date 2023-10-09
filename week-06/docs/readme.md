@@ -158,3 +158,45 @@ Color color = Theme.of(context).primaryColor;
           )),
     );
 ```
+
+## Praktikum 3: Implementasi text section
+
+### Langkah 1: Buat class VerificationCodeInput
+
+```dart
+Widget textSection = Container(
+   padding: const EdgeInsets.all(32),
+    child: const Text(
+      """ Coban Pelangi adalah lokasi wisata air terjun yang berlokasi di Desa Gubuk Klakah, Kabupaten Malang. Tempat wisata ini dikelola oleh Perum Perhutani KPH Malang. Tersirat ‘pelangi’ pada namanya karena di air terjun ini sering muncul penampakan pelangi. Air terjunnya memiliki ketinggian hingga 110 meter. Lokasi wisata ini dikelilingi oleh Taman Nasional Bromo Tengger Semeru dengan suhu udara mencapai 19 hingga 23 derajat Celsius. Disarankan membawa pakaian hangat atau jaket jika berencana mengunjungi air terjun ini.
+
+      """
+      'Ziedny Bisma Mubarok, 2141720117 '
+      'Minggu 7 ',
+      softWrap: true,
+    ),
+);
+```
+
+### Langkah 2: Tambahkan variabel text section ke body
+
+**code**
+
+```dart
+return MaterialApp(
+      title: 'Flutter Layout: Ziedny Bisma Mubarok, 2141720117',
+      home: Scaffold(
+          appBar: AppBar(
+            title: const Text('Flutter Layout Demo'),
+          ),
+          body: SingleChildScrollView(
+            child: Column(
+              children: [
+                Image.network('/assets/images/coban-pelangi.jpg'),
+                titleSection,
+                buttonSection,
+                textSection,
+              ],
+            ),
+          )),
+    );
+```

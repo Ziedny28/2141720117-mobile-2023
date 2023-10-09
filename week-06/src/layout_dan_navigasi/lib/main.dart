@@ -7,6 +7,40 @@ void main() {
 class MyApp extends StatelessWidget {
   MyApp({super.key});
 
+  // This widget is the root of your application.
+  @override
+  Widget build(BuildContext context) {
+    Color color = Theme.of(context).primaryColor;
+
+    Widget buttonSection = Row(
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      children: [
+        _buildButtonColumn(color, Icons.call, 'CALL'),
+        _buildButtonColumn(color, Icons.near_me, 'ROUTE'),
+        _buildButtonColumn(color, Icons.share, 'SHARE'),
+      ],
+    );
+
+    return MaterialApp(
+      title: 'Flutter Layout: Ziedny Bisma Mubarok, 2141720117',
+      home: Scaffold(
+        appBar: AppBar(
+          title: const Text('Flutter Layout Demo'),
+        ),
+        body: SingleChildScrollView(
+          child: Column(
+            children: [
+              Image.network('/assets/images/coban-pelangi.jpg'),
+              titleSection,
+              buttonSection,
+              textSection,
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
   Widget titleSection = Container(
     padding: const EdgeInsets.all(32),
     child: Row(
@@ -43,34 +77,17 @@ class MyApp extends StatelessWidget {
     ),
   );
 
-  // This widget is the root of your application.
-  @override
-  Widget build(BuildContext context) {
-    Color color = Theme.of(context).primaryColor;
-
-    Widget buttonSection = Row(
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-      children: [
-        _buildButtonColumn(color, Icons.call, 'CALL'),
-        _buildButtonColumn(color, Icons.near_me, 'ROUTE'),
-        _buildButtonColumn(color, Icons.share, 'SHARE'),
-      ],
-    );
-
-    return MaterialApp(
-      title: 'Flutter Layout: Ziedny Bisma Mubarok, 2141720117',
-      home: Scaffold(
-          appBar: AppBar(
-            title: const Text('Flutter Layout Demo'),
-          ),
-          body: Column(
-            children: [
-              titleSection,
-              buttonSection,
-            ],
-          )),
-    );
-  }
+  Widget textSection = Container(
+    padding: const EdgeInsets.all(32),
+    child: const Text(
+      """ Coban Pelangi adalah lokasi wisata air terjun yang berlokasi di Desa Gubuk Klakah, Kabupaten Malang. Tempat wisata ini dikelola oleh Perum Perhutani KPH Malang. Tersirat ‘pelangi’ pada namanya karena di air terjun ini sering muncul penampakan pelangi. Air terjunnya memiliki ketinggian hingga 110 meter. Lokasi wisata ini dikelilingi oleh Taman Nasional Bromo Tengger Semeru dengan suhu udara mencapai 19 hingga 23 derajat Celsius. Disarankan membawa pakaian hangat atau jaket jika berencana mengunjungi air terjun ini.
+      
+      """
+      'Ziedny Bisma Mubarok, 2141720117 '
+      'Minggu 7 ',
+      softWrap: true,
+    ),
+  );
 
   Column _buildButtonColumn(Color color, IconData icon, String label) {
     return Column(
