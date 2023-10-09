@@ -1,3 +1,5 @@
+# Layout dan Navigasi
+
 ## Praktikum 1
 
 ### Langkah 2
@@ -93,6 +95,10 @@ membuat titleSection, dengan soal 1,2, dan 3
   }
 ```
 
+**Hasil**
+
+![image](images/prak-1.jpg)
+
 ## Praktikum 2: Implementasi button row
 
 ### Langkah 1: Buat method Column \_buildButtonColumn
@@ -159,6 +165,10 @@ Color color = Theme.of(context).primaryColor;
     );
 ```
 
+**Hasil**
+
+![image](images/prak-2.jpg)
+
 ## Praktikum 3: Implementasi text section
 
 ### Langkah 1: Buat class VerificationCodeInput
@@ -200,3 +210,76 @@ return MaterialApp(
           )),
     );
 ```
+
+**Jawaban**
+![image](images/prak-3.jpg)
+
+## Praktikum 4: Implementasi image section
+
+### Langkah 1: Siapkan aset gambar
+
+```yaml
+flutter:
+  uses-material-design: true
+
+  assets:
+    - assets/images/
+```
+
+### Langkah 2: Tambahkan gambar ke body
+
+```dart
+return MaterialApp(
+      title: 'Flutter Layout: Ziedny Bisma Mubarok, 2141720117',
+      home: Scaffold(
+        appBar: AppBar(
+          title: const Text('Flutter Layout Demo'),
+        ),
+        body: SingleChildScrollView(
+          child: Column(
+            children: [
+              Image.network(
+                '/assets/images/coban-pelangi.jpg',
+                width: 600,
+                height: 400,
+                fit: BoxFit.cover,
+              ),
+              titleSection,
+              buttonSection,
+              textSection,
+            ],
+          ),
+        ),
+      ),
+    );
+
+```
+
+### Langkah 3: Terakhir, ubah menjadi ListView
+
+```dart
+return MaterialApp(
+      title: 'Flutter Layout: Ziedny Bisma Mubarok, 2141720117',
+      home: Scaffold(
+        appBar: AppBar(
+          title: const Text('Flutter Layout Demo'),
+        ),
+        body: ListView(
+          children: [
+            Image.network(
+              '/assets/images/coban-pelangi.jpg',
+              width: 600,
+              height: 400,
+              fit: BoxFit.cover,
+            ),
+            titleSection,
+            buttonSection,
+            textSection,
+          ],
+        ),
+      ),
+    );
+```
+
+**Hasil**
+![image](images/prak-4.jpg)

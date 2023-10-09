@@ -27,15 +27,18 @@ class MyApp extends StatelessWidget {
         appBar: AppBar(
           title: const Text('Flutter Layout Demo'),
         ),
-        body: SingleChildScrollView(
-          child: Column(
-            children: [
-              Image.network('/assets/images/coban-pelangi.jpg'),
-              titleSection,
-              buttonSection,
-              textSection,
-            ],
-          ),
+        body: ListView(
+          children: [
+            Image.network(
+              '/assets/images/coban-pelangi.jpg',
+              width: 600,
+              height: 400,
+              fit: BoxFit.cover,
+            ),
+            titleSection,
+            buttonSection,
+            textSection,
+          ],
         ),
       ),
     );
