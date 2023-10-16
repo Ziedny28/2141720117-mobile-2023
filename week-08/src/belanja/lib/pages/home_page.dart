@@ -5,9 +5,23 @@ class HomePage extends StatelessWidget {
   HomePage({super.key});
 
   final List<Item> items = [
-    Item(name: 'Sugar', price: 5000),
-    Item(name: 'Salt', price: 2000),
+    Item(
+      name: 'Sugar',
+      imageUrl:
+          'https://upload.wikimedia.org/wikipedia/commons/thumb/3/3c/Sucre_blanc_cassonade_complet_rapadura.jpg/968px-Sucre_blanc_cassonade_complet_rapadura.jpg',
+      price: 5000,
+      stok: 50,
+      rating: 4.0,
+    ),
+    Item(
+      name: 'Salt',
+      imageUrl: 'https://static.toiimg.com/photo/72144360.cms',
+      price: 2000,
+      stok: 100,
+      rating: 5.0,
+    ),
   ];
+
   final routeName = '/item';
 
   @override
