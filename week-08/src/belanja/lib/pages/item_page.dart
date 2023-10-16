@@ -29,6 +29,11 @@ class ItemPage extends StatelessWidget {
           ],
         ),
       ),
+      bottomNavigationBar: const Text(
+        "Ziedny Bisma Mubarok/2141720117",
+        textAlign: TextAlign.center,
+        style: TextStyle(color: Colors.black54, fontSize: 12),
+      ),
     );
   }
 }

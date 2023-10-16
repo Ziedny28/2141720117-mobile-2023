@@ -11,14 +11,15 @@ class HomePage extends StatelessWidget {
           'https://upload.wikimedia.org/wikipedia/commons/thumb/3/3c/Sucre_blanc_cassonade_complet_rapadura.jpg/968px-Sucre_blanc_cassonade_complet_rapadura.jpg',
       price: 5000,
       stok: 50,
-      rating: 4.0,
+      rating: 4.5,
     ),
     Item(
       name: 'Salt',
-      imageUrl: 'https://static.toiimg.com/photo/72144360.cms',
+      imageUrl:
+          'https://upload.wikimedia.org/wikipedia/commons/thumb/0/07/Comparison_of_Table_Salt_with_Kitchen_Salt.png/1280px-Comparison_of_Table_Salt_with_Kitchen_Salt.png',
       price: 2000,
       stok: 100,
-      rating: 5.0,
+      rating: 4.7,
     ),
   ];
 
@@ -39,6 +40,11 @@ class HomePage extends StatelessWidget {
           children: items.map((item) => ItemCard(item: item)).toList(),
         ),
       ),
+      bottomNavigationBar: const Text(
+        "Ziedny Bisma Mubarok/2141720117",
+        textAlign: TextAlign.center,
+        style: TextStyle(color: Colors.black54, fontSize: 12),
+      ),
     );
   }
 }
@@ -57,16 +63,20 @@ class ItemCard extends StatelessWidget {
         },
         child: Card(
           child: SizedBox(
-            height: 1000,
             child: Column(
               children: [
                 Image.network(
                   item.imageUrl.toString(),
-                  width: 150,
+                  height: 100,
                 ),
                 Text(item.name.toString()),
                 Text(item.price.toString()),
-                Text(item.rating.toString())
+                Row(
+                  children: [
+                    const Icon(Icons.star),
+                    Text(item.rating.toString())
+                  ],
+                )
               ],
             ),
           ),
