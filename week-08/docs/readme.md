@@ -160,3 +160,7 @@ Sesuaikan dan modifikasi tampilan sehingga menjadi aplikasi yang menarik. Selain
 ## Nomor 6
 
 Selesaikan Praktikum Navigasi dan Rute tersebut, lalu dokumentasikan dan push ke repository Anda berupa screenshot setiap hasil pekerjaan beserta penjelasannya di file README.md. Kumpulkan link commit repository GitHub Anda ke spreadsheet yang telah disediakan!
+
+**Jawaban**
+
+![Hasil Akhir](hasil.gif)
