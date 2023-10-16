@@ -22,40 +22,55 @@ class HomePage extends StatelessWidget {
     ),
   ];
 
-  final routeName = '/item';
-
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: const EdgeInsets.all(8),
-      child: ListView.builder(
-        itemCount: items.length,
-        itemBuilder: (context, index) {
-          final item = items[index];
-          return Material(
-            child: InkWell(
-              onTap: () {
-                Navigator.pushNamed(context, routeName, arguments: item);
-              },
-              child: Card(
-                child: Container(
-                  margin: const EdgeInsets.all(8),
-                  child: Row(
-                    children: [
-                      Expanded(child: Text(item.name.toString())),
-                      Expanded(
-                        child: Text(
-                          item.price.toString(),
-                          textAlign: TextAlign.end,
-                        ),
-                      )
-                    ],
-                  ),
-                ),
-              ),
-            ),
-          );
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text("Toko Item"),
+      ),
+      body: Container(
+        margin: const EdgeInsets.all(8),
+        child: GridView.count(
+          primary: false,
+          padding: const EdgeInsets.all(20),
+          crossAxisSpacing: 10,
+          mainAxisSpacing: 10,
+          crossAxisCount: 2,
+          children: items.map((item) => ItemCard(item: item)).toList(),
+        ),
+      ),
+    );
+  }
+}
+
+class ItemCard extends StatelessWidget {
+  final Item item;
+  const ItemCard({super.key, required this.item});
+
+  final String routeName = '/item';
+  @override
+  Widget build(BuildContext context) {
+    return Material(
+      child: InkWell(
+        onTap: () {
+          Navigator.pushNamed(context, routeName, arguments: item);
         },
+        child: Card(
+          child: SizedBox(
+            height: 1000,
+            child: Column(
+              children: [
+                Image.network(
+                  item.imageUrl.toString(),
+                  width: 150,
+                ),
+                Text(item.name.toString()),
+                Text(item.price.toString()),
+                Text(item.rating.toString())
+              ],
+            ),
+          ),
+        ),
       ),
     );
   }

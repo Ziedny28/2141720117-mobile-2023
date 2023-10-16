@@ -7,22 +7,27 @@ class ItemPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final itemArgs = ModalRoute.of(context)!.settings.arguments as Item;
 
-    return Container(
-      margin: const EdgeInsets.all(8),
-      child: Column(
-        children: [
-          ClipRRect(
-            borderRadius: BorderRadius.circular(8.0),
-            child: Image(
-              image: NetworkImage(
-                itemArgs.imageUrl.toString(),
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text("Detail Item"),
+      ),
+      body: Container(
+        margin: const EdgeInsets.all(8),
+        child: Column(
+          children: [
+            ClipRRect(
+              borderRadius: BorderRadius.circular(8.0),
+              child: Image(
+                image: NetworkImage(
+                  itemArgs.imageUrl.toString(),
+                ),
               ),
             ),
-          ),
-          ItemDataPlaceholder(
-            itemArgs: itemArgs,
-          ),
-        ],
+            ItemDataPlaceholder(
+              itemArgs: itemArgs,
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -80,7 +85,7 @@ class ItemDataDisplay extends StatelessWidget {
           ),
         ),
         const Expanded(
-          flex: 1,
+          flex: 0,
           child: Text(
             ":",
             textAlign: TextAlign.left,
