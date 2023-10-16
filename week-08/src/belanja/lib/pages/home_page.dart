@@ -65,9 +65,14 @@ class ItemCard extends StatelessWidget {
           child: SizedBox(
             child: Column(
               children: [
-                Image.network(
-                  item.imageUrl.toString(),
+                SizedBox(
                   height: 100,
+                  child: Hero(
+                    tag: "imageMovePage",
+                    child: Image.network(
+                      item.imageUrl.toString(),
+                    ),
+                  ),
                 ),
                 Text(item.name.toString()),
                 Text(item.price.toString()),

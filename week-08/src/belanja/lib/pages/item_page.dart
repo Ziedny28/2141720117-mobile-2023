@@ -17,9 +17,12 @@ class ItemPage extends StatelessWidget {
           children: [
             ClipRRect(
               borderRadius: BorderRadius.circular(8.0),
-              child: Image(
-                image: NetworkImage(
-                  itemArgs.imageUrl.toString(),
+              child: Hero(
+                tag: "imageMovePage",
+                child: Image(
+                  image: NetworkImage(
+                    itemArgs.imageUrl.toString(),
+                  ),
                 ),
               ),
             ),
