@@ -5,7 +5,8 @@ class ItemPage extends StatelessWidget {
   const ItemPage({super.key});
   @override
   Widget build(BuildContext context) {
-    final itemArgs = ModalRoute.of(context)!.settings.arguments as Item;
+    final (itemArgs, index) =
+        ModalRoute.of(context)!.settings.arguments as (Item, int);
 
     return Scaffold(
       appBar: AppBar(
@@ -18,7 +19,7 @@ class ItemPage extends StatelessWidget {
             ClipRRect(
               borderRadius: BorderRadius.circular(8.0),
               child: Hero(
-                tag: "imageMovePage",
+                tag: "imageMovePage_$index",
                 child: Image(
                   image: NetworkImage(
                     itemArgs.imageUrl.toString(),

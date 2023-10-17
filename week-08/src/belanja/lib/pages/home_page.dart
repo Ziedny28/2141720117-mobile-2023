@@ -21,6 +21,14 @@ class HomePage extends StatelessWidget {
       stok: 100,
       rating: 4.7,
     ),
+    Item(
+      name: 'Salt 2',
+      imageUrl:
+          'https://upload.wikimedia.org/wikipedia/commons/thumb/0/07/Comparison_of_Table_Salt_with_Kitchen_Salt.png/1280px-Comparison_of_Table_Salt_with_Kitchen_Salt.png',
+      price: 2000,
+      stok: 100,
+      rating: 4.7,
+    ),
   ];
 
   @override
@@ -33,11 +41,17 @@ class HomePage extends StatelessWidget {
         margin: const EdgeInsets.all(8),
         child: GridView.count(
           primary: false,
-          padding: const EdgeInsets.all(20),
           crossAxisSpacing: 10,
           mainAxisSpacing: 10,
           crossAxisCount: 2,
-          children: items.map((item) => ItemCard(item: item)).toList(),
+          children: items
+              .asMap()
+              .entries
+              .map((item) => ItemCard(
+                    item: item.value,
+                    index: item.key,
+                  ))
+              .toList(),
         ),
       ),
       bottomNavigationBar: const Text(
@@ -51,7 +65,8 @@ class HomePage extends StatelessWidget {
 
 class ItemCard extends StatelessWidget {
   final Item item;
-  const ItemCard({super.key, required this.item});
+  final int index;
+  const ItemCard({super.key, required this.item, required this.index});
 
   final String routeName = '/item';
   @override
@@ -59,7 +74,7 @@ class ItemCard extends StatelessWidget {
     return Material(
       child: InkWell(
         onTap: () {
-          Navigator.pushNamed(context, routeName, arguments: item);
+          Navigator.pushNamed(context, routeName, arguments: (item, index));
         },
         child: Card(
           child: SizedBox(
@@ -67,10 +82,15 @@ class ItemCard extends StatelessWidget {
               children: [
                 SizedBox(
                   height: 100,
-                  child: Hero(
-                    tag: "imageMovePage",
-                    child: Image.network(
-                      item.imageUrl.toString(),
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(8.0),
+                    child: Hero(
+                      tag: "imageMovePage_$index",
+                      child: Image(
+                        image: NetworkImage(
+                          item.imageUrl.toString(),
+                        ),
+                      ),
                     ),
                   ),
                 ),
@@ -78,7 +98,10 @@ class ItemCard extends StatelessWidget {
                 Text(item.price.toString()),
                 Row(
                   children: [
-                    const Icon(Icons.star),
+                    const Icon(
+                      Icons.star,
+                      color: Colors.yellow,
+                    ),
                     Text(item.rating.toString())
                   ],
                 )
