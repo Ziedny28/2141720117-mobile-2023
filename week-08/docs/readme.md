@@ -39,6 +39,10 @@ Setelah kedua halaman telah dibuat dan didefinisikan, bukalah file main.dart. Pa
 **Jawaban**
 
 ```dart
+import 'package:belanja/pages/home_page.dart';
+import 'package:belanja/pages/item_page.dart';
+import 'package:flutter/material.dart';
+
 void main() {
   runApp(
     MaterialApp(
@@ -120,11 +124,52 @@ Item pada ListView saat ini ketika ditekan masih belum memberikan aksi tertentu.
 Untuk menambahkan sentuhan, letakkan cursor pada widget pembuka Card. Kemudian gunakan shortcut quick fix dari VSCode (Ctrl + . pada Windows atau Cmd + . pada MacOS). Sorot menu wrap with widget... Ubah nilai widget menjadi InkWell serta tambahkan named argument onTap yang berisi fungsi untuk berpindah ke halaman ItemPage. Ilustrasi potongan kode dapat anda lihat pada potongan berikut.
 
 ```dart
- child: InkWell(
+
+class HomePage extends StatelessWidget {
+  HomePage({super.key});
+
+  final List<Item> items = [
+    Item(name: 'Sugar', price: 5000),
+    Item(name: 'Salt', price: 2000),
+  ];
+  final routeName = '/item';
+
+ @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: const EdgeInsets.all(8),
+      child: ListView.builder(
+        itemCount: items.length,
+        itemBuilder: (context, index) {
+          final item = items[index];
+          return Material(
+            child: InkWell(
               onTap: () {
                 Navigator.pushNamed(context, routeName, arguments: item);
               },
-
+              child: Card(
+                child: Container(
+                  margin: const EdgeInsets.all(8),
+                  child: Row(
+                    children: [
+                      Expanded(child: Text(item.name.toString())),
+                      Expanded(
+                        child: Text(
+                          item.price.toString(),
+                          textAlign: TextAlign.end,
+                        ),
+                      )
+                    ],
+                  ),
+                ),
+              ),
+            ),
+          );
+        },
+      ),
+    );
+  }
+}
 ```
 
 # Tugas Praktikum 2
@@ -134,7 +179,41 @@ Untuk menambahkan sentuhan, letakkan cursor pada widget pembuka Card. Kemudian g
 Untuk melakukan pengiriman data ke halaman berikutnya, cukup menambahkan informasi arguments pada penggunaan Navigator. Perbarui kode pada bagian Navigator menjadi seperti berikut.
 
 ```dart
-Navigator.pushNamed(context, '/item', arguments: item);
+@override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: const EdgeInsets.all(8),
+      child: ListView.builder(
+        itemCount: items.length,
+        itemBuilder: (context, index) {
+          final item = items[index];
+          return Material(
+            child: InkWell(
+              onTap: () {
+                Navigator.pushNamed(context, routeName, arguments: item);
+              },
+              child: Card(
+                child: Container(
+                  margin: const EdgeInsets.all(8),
+                  child: Row(
+                    children: [
+                      Expanded(child: Text(item.name.toString())),
+                      Expanded(
+                        child: Text(
+                          item.price.toString(),
+                          textAlign: TextAlign.end,
+                        ),
+                      )
+                    ],
+                  ),
+                ),
+              ),
+            ),
+          );
+        },
+      ),
+    );
+  }
 ```
 
 ## Nomor 2
@@ -142,7 +221,24 @@ Navigator.pushNamed(context, '/item', arguments: item);
 Pembacaan nilai yang dikirimkan pada halaman sebelumnya dapat dilakukan menggunakan ModalRoute. Tambahkan kode berikut pada blok fungsi build dalam halaman ItemPage. Setelah nilai didapatkan, anda dapat menggunakannya seperti penggunaan variabel pada umumnya. (https://docs.flutter.dev/cookbook/navigation/navigate-with-arguments)
 
 ```dart
-final itemArgs = ModalRoute.of(context)!.settings.arguments as Item;
+class ItemPage extends StatelessWidget {
+  const ItemPage({super.key});
+  @override
+  Widget build(BuildContext context) {
+    final itemArgs = ModalRoute.of(context)!.settings.arguments as Item;
+    return Container(
+      margin: const EdgeInsets.all(8),
+      child: Card(
+        child: Row(
+          children: [
+            Text(itemArgs.name.toString()),
+            Text(itemArgs.price.toString())
+          ],
+        ),
+      ),
+    );
+  }
+}
 ```
 
 ## Nomor 3
