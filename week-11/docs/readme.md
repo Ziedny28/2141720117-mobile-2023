@@ -213,3 +213,215 @@ class _PlanScreenState extends State<PlanScreen> {
 
 # Praktikum 2: Mengelola Data Layer dengan InheritedWidget dan InheritedNotifier
 
+## Langkah 1: Buat file plan_provider.dart
+
+provider/plan_provider.dart:
+
+```dart
+import 'package:flutter/material.dart';
+import 'package:master_plan/models/data_layer.dart';
+
+class PlanProvider extends InheritedNotifier<ValueNotifier<Plan>> {
+  const PlanProvider(
+      {super.key, required Widget child, required ValueNotifier<Plan> notifier})
+      : super(child: child, notifier: notifier);
+  static ValueNotifier<Plan> of(BuildContext context) {
+    return context
+        .dependOnInheritedWidgetOfExactType<PlanProvider>()!
+        .notifier!;
+  }
+}
+
+```
+
+## Langkah 2: Edit main.dart
+
+main.dart:
+
+```dart
+import 'package:flutter/material.dart';
+import 'package:master_plan/models/data_layer.dart';
+import 'package:master_plan/provider/plan_provider.dart';
+
+import './views/plan_screen.dart';
+
+void main() => runApp(const MasterPlanApp());
+
+class MasterPlanApp extends StatelessWidget {
+  const MasterPlanApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+        theme: ThemeData(primarySwatch: Colors.purple),
+        home: PlanProvider(
+          notifier: ValueNotifier<Plan>(
+            const Plan(),
+          ),
+          child: const PlanScreen(),
+        ));
+  }
+}
+
+```
+
+## Langkah 3: Tambah method pada model plan.dart
+
+models/plan.dart
+
+```dart
+import 'task.dart';
+
+class Plan {
+  final String name;
+  final List<Task> tasks;
+
+  const Plan({this.name = '', this.tasks = const []});
+
+  int get completedCount => tasks.where((task) => task.complete).length;
+  String get completenessMessage =>
+      '$completedCount out of ${tasks.length} tasks';
+}
+
+```
+
+## Langkah 4: Pindah ke PlanScreen
+
+Edit PlanScreen agar menggunakan data dari PlanProvider. Hapus deklarasi variabel plan (ini akan membuat error). Kita akan perbaiki pada langkah 5 berikut ini.
+
+## Langkah 5: Edit method _buildAddTaskButton
+
+views/plan_provider.dart:
+
+```dart
+  Widget _buildAddTextButton(BuildContext context) {
+    ValueNotifier<Plan> planNotifier = PlanProvider.of(context);
+    return FloatingActionButton(
+        child: const Icon(Icons.add),
+        onPressed: () {
+          Plan currentPlan = planNotifier.value;
+          planNotifier.value = Plan(
+            name: currentPlan.name,
+            tasks: List<Task>.from(currentPlan.tasks)..add(const Task()),
+          );
+        });
+  } 
+```
+
+## Langkah 6: Edit method _buildTaskTile
+
+views/plan_provider.dart:
+
+```dart
+  Widget _buildTextTile(Task task, int index, BuildContext context) {
+    ValueNotifier<Plan> planNotifier = PlanProvider.of(context);
+    return ListTile(
+      leading: Checkbox(
+          value: task.complete,
+          onChanged: (selected) {
+            Plan currentPlan = planNotifier.value;
+            planNotifier.value = Plan(
+              name: currentPlan.name,
+              tasks: List<Task>.from(currentPlan.tasks)
+                ..[index] = Task(
+                  description: task.description,
+                  complete: selected ?? false,
+                ),
+            );
+          }),
+      title: TextFormField(
+        initialValue: task.description,
+        onChanged: (text) {
+          Plan currentPlan = planNotifier.value;
+          planNotifier.value = Plan(
+            name: currentPlan.name,
+            tasks: List<Task>.from(currentPlan.tasks)
+              ..[index] = Task(
+                description: text,
+                complete: task.complete,
+              ),
+          );
+        },
+      ),
+    );
+  }
+
+```
+
+## Langkah 7: Edit _buildList
+
+views/plan_provider.dart:
+
+```dart
+  Widget _buildList(Plan plan) {
+    return ListView.builder(
+      controller: scrollController,
+      itemCount: plan.tasks.length,
+      itemBuilder: (context, index) =>
+          _buildTextTile(plan.tasks[index], index, context),
+      keyboardDismissBehavior: Theme.of(context).platform == TargetPlatform.iOS
+          ? ScrollViewKeyboardDismissBehavior.onDrag
+          : ScrollViewKeyboardDismissBehavior.manual,
+    );
+  }
+```
+
+## Langkah 8: Tetap di class PlanScreen
+
+Edit method build sehingga bisa tampil progress pada bagian bawah (footer). Caranya, bungkus (wrap) _buildList dengan widget Expanded dan masukkan ke dalam widget Column seperti kode pada Langkah 9.
+
+## Langkah 9: Tambah widget SafeArea
+
+views/plan_provider.dart:
+
+```dart
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Master Plan Ziedny'),
+      ),
+      body: ValueListenableBuilder<Plan>(
+        valueListenable: PlanProvider.of(context),
+        builder: (context, plan, child) {
+          return Column(
+            children: [
+              Expanded(child: _buildList(plan)),
+              SafeArea(child: Text(plan.completenessMessage))
+            ],
+          );
+        },
+      ),
+      floatingActionButton: _buildAddTextButton(context),
+    );
+  }
+
+```
+
+
+
+# Tugas Praktikum 2: InheritedWidget
+
+1. Selesaikan langkah-langkah praktikum tersebut, lalu dokumentasikan berupa GIF hasil akhir praktikum beserta penjelasannya di file README.md! Jika Anda menemukan ada yang error atau tidak berjalan dengan baik, silakan diperbaiki sesuai dengan tujuan aplikasi tersebut dibuat.
+
+2. Jelaskan mana yang dimaksud InheritedWidget pada langkah 1 tersebut! Mengapa yang digunakan InheritedNotifier?
+   
+   **Jawaban**
+
+  InheritedWidget dan InheritedNotifier adalah widget Flutter yang memungkinkan berbagi data antar widget.
+
+3. Jelaskan maksud dari method di langkah 3 pada praktikum tersebut! Mengapa dilakukan demikian?
+
+  **Jawaban**
+
+  Langkah 3 memberikan jumlah dari task yang sudah terselesaikan
+
+4. Lakukan capture hasil dari Langkah 9 berupa GIF, kemudian jelaskan apa yang telah Anda buat!
+
+
+
+5. Kumpulkan laporan praktikum Anda berupa link commit atau repository GitHub ke spreadsheet yang telah disediakan!
+
+![](images/hasil%20prak-2.gif)
+
