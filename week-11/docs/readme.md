@@ -210,3 +210,6 @@ class _PlanScreenState extends State<PlanScreen> {
     - Metode `dispose()` dipanggil saat widget dihancurkan. Metode ini dapat digunakan untuk membebaskan sumber daya yang digunakan oleh widget, seperti menutup koneksi jaringan atau melepaskan memori. Kode ini membuang  scroll controller. Hal ini penting dilakukan karena akan mengosongkan sumber daya yang digunakan oleh  scroll controller.
 
 6. Kumpulkan laporan praktikum Anda berupa link commit atau repository GitHub ke spreadsheet yang telah disediakan!
+
+# Praktikum 2: Mengelola Data Layer dengan InheritedWidget dan InheritedNotifier
+
