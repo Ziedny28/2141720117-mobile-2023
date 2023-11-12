@@ -199,7 +199,11 @@ class _PlanScreenState extends State<PlanScreen> {
 
     **Jawaban**
 
+    membuat aplikasi duntuk list rencana dimana kita bisa menambah list kemudian mengisi text dan mencentang list
+
    ![gif](images/prak-1%20langkah%209.gif)
+
+   
 
 5. Apa kegunaan method pada Langkah 11 dan 13 dalam lifecyle state ?
 
@@ -419,10 +423,14 @@ views/plan_provider.dart:
 
 4. Lakukan capture hasil dari Langkah 9 berupa GIF, kemudian jelaskan apa yang telah Anda buat!
 
-
-5. Kumpulkan laporan praktikum Anda berupa link commit atau repository GitHub ke spreadsheet yang telah disediakan!
+kurang lebih  sama namun data sudah tersimpan dalam provider
 
 ![](images/hasil%20prak-2.gif)
+
+
+
+1. Kumpulkan laporan praktikum Anda berupa link commit atau repository GitHub ke spreadsheet yang telah disediakan!
+
 
 # Tugas Praktikum 3: State di Multiple Screens
 
@@ -436,6 +444,10 @@ views/plan_provider.dart:
 
 3. Lakukan capture hasil dari Langkah 14 berupa GIF, kemudian jelaskan apa yang telah Anda buat!
    
+   **Jawab**
    
-   
+
+  kini karena value variable sudah tersimpan pada provider, kita dapat menggunakannya dari screen lain pada aplikasi
+  ![](images/hasil-prak-3.gif)
+
 4. Kumpulkan laporan praktikum Anda berupa link commit atau repository GitHub ke spreadsheet yang telah disediakan!
