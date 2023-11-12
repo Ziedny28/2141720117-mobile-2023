@@ -1,27 +1,24 @@
 import 'package:flutter/material.dart';
-import 'package:master_plan/models/data_layer.dart';
-import 'package:master_plan/provider/plan_provider.dart';
-import 'package:master_plan/views/plan_screen.dart';
+
+import '../models/data_layer.dart';
+import '../provider/plan_provider.dart';
+import 'plan_screen.dart';
 
 class PlanCreatorScreen extends StatefulWidget {
-  const PlanCreatorScreen({super.key});
+  final Plan plan;
+  const PlanCreatorScreen({super.key, required this.plan});
 
   @override
-  State<PlanCreatorScreen> createState() => _PlanCreatorScreenState();
+  State<PlanCreatorScreen> createState() => _PlanCreatorScreen();
 }
 
-class _PlanCreatorScreenState extends State<PlanCreatorScreen> {
+class _PlanCreatorScreen extends State<PlanCreatorScreen> {
   final textController = TextEditingController();
-
-  @override
-  void dispose() {
-    textController.dispose();
-    super.dispose();
-  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      // ganti ‘Namaku' dengan nama panggilan Anda
       appBar: AppBar(title: const Text('Master Plans Ziedny')),
       body: Column(children: [
         _buildListCreator(),
@@ -42,6 +39,12 @@ class _PlanCreatorScreenState extends State<PlanCreatorScreen> {
                   labelText: 'Add a plan', contentPadding: EdgeInsets.all(20)),
               onEditingComplete: addPlan),
         ));
+  }
+
+  @override
+  void dispose() {
+    textController.dispose();
+    super.dispose();
   }
 
   void addPlan() {

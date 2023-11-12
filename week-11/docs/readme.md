@@ -420,8 +420,22 @@ views/plan_provider.dart:
 4. Lakukan capture hasil dari Langkah 9 berupa GIF, kemudian jelaskan apa yang telah Anda buat!
 
 
-
 5. Kumpulkan laporan praktikum Anda berupa link commit atau repository GitHub ke spreadsheet yang telah disediakan!
 
 ![](images/hasil%20prak-2.gif)
 
+# Tugas Praktikum 3: State di Multiple Screens
+
+1. Selesaikan langkah-langkah praktikum tersebut, lalu dokumentasikan berupa GIF hasil akhir praktikum beserta penjelasannya di file README.md! Jika Anda menemukan ada yang error atau tidak berjalan dengan baik, silakan diperbaiki sesuai dengan tujuan aplikasi tersebut dibuat.
+   
+2. Berdasarkan Praktikum 3 yang telah Anda lakukan, jelaskan maksud dari gambar diagram berikut ini!
+
+  **Jawab**
+
+  Ketika rute berpindah dari `PlanCreatorScreen` menuju `PlanScreen`  variable plan akan digunakan sebagai parameter, kemudian plan ini akan menjadi variable yang digunakan untuk memunculkan list pada halaman `PlanScreen` 
+
+3. Lakukan capture hasil dari Langkah 14 berupa GIF, kemudian jelaskan apa yang telah Anda buat!
+   
+   
+   
+4. Kumpulkan laporan praktikum Anda berupa link commit atau repository GitHub ke spreadsheet yang telah disediakan!

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:master_plan/models/data_layer.dart';
+
+import '../models/data_layer.dart';
 
 class PlanProvider extends InheritedNotifier<ValueNotifier<List<Plan>>> {
   const PlanProvider(
@@ -7,6 +8,7 @@ class PlanProvider extends InheritedNotifier<ValueNotifier<List<Plan>>> {
       required Widget child,
       required ValueNotifier<List<Plan>> notifier})
       : super(child: child, notifier: notifier);
+
   static ValueNotifier<List<Plan>> of(BuildContext context) {
     return context
         .dependOnInheritedWidgetOfExactType<PlanProvider>()!
