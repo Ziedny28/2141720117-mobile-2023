@@ -45,15 +45,16 @@ class _FuturePageState extends State<FuturePage> {
             const Spacer(),
             ElevatedButton(
               onPressed: () {
-                getData().then((value) {
-                  setState(() {
-                    result = value.body.toString().substring(0, 450);
-                  });
-                }).catchError((_) {
-                  setState(() {
-                    result = 'An Error Occured';
-                  });
-                });
+                // getData().then((value) {
+                //   setState(() {
+                //     result = value.body.toString().substring(0, 450);
+                //   });
+                // }).catchError((_) {
+                //   setState(() {
+                //     result = 'An Error Occured';
+                //   });
+                // });
+                count();
               },
               child: const Text('Go!'),
             ),
@@ -66,6 +67,38 @@ class _FuturePageState extends State<FuturePage> {
         ),
       ),
     );
+  }
+
+  Future<int> returnOneAsync() async {
+    await Future.delayed(const Duration(seconds: 3));
+    return 1;
+  }
+
+  Future<int> returnTwoAsync() async {
+    await Future.delayed(const Duration(seconds: 3));
+    return 2;
+  }
+
+  Future<int> returnThreeAsync() async {
+    await Future.delayed(const Duration(seconds: 3));
+    return 3;
+  }
+
+  Future count() async {
+    int total = 0;
+    updateResult(total.toString());
+    total += await returnOneAsync();
+    updateResult(total.toString());
+    total += await returnTwoAsync();
+    updateResult(total.toString());
+    total += await returnThreeAsync();
+    updateResult(total.toString());
+  }
+
+  void updateResult(String value) {
+    setState(() {
+      result = value;
+    });
   }
 
   Future<Response> getData() async {
