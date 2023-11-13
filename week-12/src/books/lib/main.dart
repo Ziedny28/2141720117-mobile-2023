@@ -47,17 +47,14 @@ class _FuturePageState extends State<FuturePage> {
             const Spacer(),
             ElevatedButton(
               onPressed: () {
-                // getData().then((value) {
-                //   setState(() {
-                //     result = value.body.toString().substring(0, 450);
-                //   });
-                // }).catchError((_) {
-                //   setState(() {
-                //     result = 'An Error Occured';
-                //   });
-                // });
-                count();
-                returnFG();
+                returnError()
+                    .then((value) => setState(() {
+                          result = "success";
+                        }))
+                    .catchError((onError) => setState(() {
+                          result = onError.toString();
+                        }))
+                    .whenComplete(() => print('complete'));
               },
               child: const Text('Go!'),
             ),
@@ -72,10 +69,15 @@ class _FuturePageState extends State<FuturePage> {
     );
   }
 
+  Future returnError() async {
+    await Future.delayed(const Duration(seconds: 2));
+    throw Exception('Something terrible happend');
+  }
+
   void returnFG() {
     FutureGroup<int> futureGroup = FutureGroup<int>();
 
-    //  final futures = Future.wait<int>([
+    // final futures = Future.wait<int>([
     //   returnOneAsync(),
     //   returnTwoAsync(),
     //   returnThreeAsync(),
