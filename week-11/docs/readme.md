@@ -199,7 +199,7 @@ class _PlanScreenState extends State<PlanScreen> {
 
     **Jawaban**
 
-    membuat aplikasi duntuk list rencana dimana kita bisa menambah list kemudian mengisi text dan mencentang list
+   dibuat aplikasi untuk daftar plan, yang memungkinkan pengguna menambahkan item ke dalam daftar, mengisi teks untuk setiap item, dan memberi tanda centang pada setiap item yang telah selesai. Aplikasi ini akan memberikan pengguna kemampuan untuk menyusun dan melacak plan mereka dengan mudah dan efisien.
 
    ![gif](images/prak-1%20langkah%209.gif)
 
@@ -423,7 +423,9 @@ views/plan_provider.dart:
 
 4. Lakukan capture hasil dari Langkah 9 berupa GIF, kemudian jelaskan apa yang telah Anda buat!
 
-kurang lebih  sama namun data sudah tersimpan dalam provider
+   **Jawaban**
+
+  Aplikasi daftar rencana  akan diintegrasikan penyimpanan data dalam provider. Dengan menggunakan penyimpanan data, memungkinkan data dapat diakses dari seluruh aplikasi.
 
 ![](images/hasil%20prak-2.gif)
 
@@ -447,7 +449,8 @@ kurang lebih  sama namun data sudah tersimpan dalam provider
    **Jawab**
    
 
-  kini karena value variable sudah tersimpan pada provider, kita dapat menggunakannya dari screen lain pada aplikasi
+  Dengan nilai variabel yang telah tersimpan dalam provider, kita sekarang dapat mengakses value dari avriable pada layar lain di dalam aplikasi. Ini memungkinkan pengguna untuk melihat dan mengelola daftar rencana mereka dari berbagai bagian aplikasi tanpa kehilangan data. Ini menciptakan pengalaman yang lebih terintegrasi dan nyaman bagi pengguna dalam menjalankan dan mengelola rencana mereka di aplikasi ini.
+
   ![](images/hasil-prak-3.gif)
 
-4. Kumpulkan laporan praktikum Anda berupa link commit atau repository GitHub ke spreadsheet yang telah disediakan!
+1. Kumpulkan laporan praktikum Anda berupa link commit atau repository GitHub ke spreadsheet yang telah disediakan!
