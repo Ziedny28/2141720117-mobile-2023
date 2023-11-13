@@ -47,14 +47,7 @@ class _FuturePageState extends State<FuturePage> {
             const Spacer(),
             ElevatedButton(
               onPressed: () {
-                returnError()
-                    .then((value) => setState(() {
-                          result = "success";
-                        }))
-                    .catchError((onError) => setState(() {
-                          result = onError.toString();
-                        }))
-                    .whenComplete(() => print('complete'));
+                handleError();
               },
               child: const Text('Go!'),
             ),
@@ -67,6 +60,16 @@ class _FuturePageState extends State<FuturePage> {
         ),
       ),
     );
+  }
+
+  Future handleError() async {
+    try {
+      await returnError();
+    } catch (error) {
+      updateResult(error.toString());
+    } finally {
+      print("complete");
+    }
   }
 
   Future returnError() async {
