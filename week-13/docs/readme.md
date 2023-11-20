@@ -232,3 +232,45 @@ class _StreamHomePageState extends State<StreamHomePage> {
 
 ![](imgs/prak%201.gif)
 
+## Langkah 13: Ganti isi method changeColor()
+
+main.dart:
+
+```dart
+
+class _StreamHomePageState extends State<StreamHomePage> {
+  Color bgColor = Colors.blueGrey;
+  late ColorStream colorStream;
+
+  @override
+  void initState() {
+    ...
+    changeColor();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+   ...
+  }
+
+  void changeColor() async {
+    colorStream.getColors().listen((eventColor) {
+      setState(() {
+        bgColor = eventColor;
+      });
+    });
+  }
+}
+
+```
+
+## Soal 5
+- Jelaskan perbedaan menggunakan listen dan await for (langkah 9) !
+- Lakukan commit hasil jawaban Soal 5 dengan pesan "W13: Jawaban Soal 5"
+
+**Jawaban**
+
+Kode pertama menggunakan loop await for untuk mengulangi colorStream, kode akan menunggu setiap warna diberikan sebelum memperbarui warna latar belakang.
+
+Kode kedua menggunakan metode listen untuk subscibe ke colorStream, kode akan diberitahu setiap kali warna baru diberikan, dan akan memperbarui warna latar belakang sesuai dengan itu. 
+

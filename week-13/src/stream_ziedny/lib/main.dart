@@ -41,7 +41,7 @@ class _StreamHomePageState extends State<StreamHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Strem'),
+        title: const Text('Strem Ziedny'),
       ),
       body: Container(
         decoration: BoxDecoration(color: bgColor),
@@ -50,10 +50,10 @@ class _StreamHomePageState extends State<StreamHomePage> {
   }
 
   void changeColor() async {
-    await for (var eventColor in colorStream.getColors()) {
+    colorStream.getColors().listen((eventColor) {
       setState(() {
         bgColor = eventColor;
       });
-    }
+    });
   }
 }
