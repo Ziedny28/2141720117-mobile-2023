@@ -274,3 +274,239 @@ Kode pertama menggunakan loop await for untuk mengulangi colorStream, kode akan 
 
 Kode kedua menggunakan metode listen untuk subscibe ke colorStream, kode akan diberitahu setiap kali warna baru diberikan, dan akan memperbarui warna latar belakang sesuai dengan itu. 
 
+# Praktikum 2: Stream controllers dan sinks
+
+## Langkah 1: Buka file stream.dart
+
+stream.dart:
+
+```dart
+import 'dart:async';
+```
+
+## Langkah 2: Tambah class NumberStream
+
+stream.dart:
+```dart
+class NumberStream {}
+```
+
+## Langkah 3: Tambah StreamController
+
+stream.dart:
+```dart
+class NumberStream {
+  final StreamController<int> controller = StreamController<int>();
+}
+```
+
+## Langkah 4: Tambah method addNumberToSink
+
+stream.dart:
+```dart
+class NumberStream {
+  final StreamController<int> controller = StreamController<int>();
+
+  void addNumberToSink(int newNumber) {
+    controller.sink.add(newNumber);
+  }
+}
+```
+
+## Langkah 5: Tambah method close()
+
+```dart
+
+class NumberStream {
+  final StreamController<int> controller = StreamController<int>();
+
+  void addNumberToSink(int newNumber) {
+    controller.sink.add(newNumber);
+  }
+
+  close() {
+    controller.close();
+  }
+}
+```
+
+## Langkah 6: Buka main.dart
+
+main.dart:
+```dart
+import 'dart:async';
+import 'dart:math';
+```
+
+## Langkah 7: Tambah variabel
+
+main.dart:
+
+```dart
+class _StreamHomePageState extends State<StreamHomePage> {
+  Color bgColor = Colors.blueGrey;
+  late ColorStream colorStream;
+
+  int lateNumber = 0;
+  late StreamController numberStreamController;
+  late NumberStream numberStream;
+```
+
+## Langkah 8: Edit initState()
+
+main.dart:
+
+```dart
+
+class _StreamHomePageState extends State<StreamHomePage> {
+    ...
+
+  int lastNumber = 0;
+  late StreamController numberStreamController;
+  late NumberStream numberStream;
+
+  @override
+  void initState() {
+    super.initState();
+    // colorStream = ColorStream();
+    // changeColor();
+    numberStream = NumberStream();
+    numberStreamController = numberStream.controller;
+    Stream stream = numberStreamController.stream;
+    stream.listen((event) {
+      setState(() {
+        lastNumber = event;
+      });
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+   ...
+  }
+
+  void changeColor() async {
+    ...
+  }
+}
+
+```
+
+##  Langkah 9: Edit dispose()
+
+main.dart:
+
+```dart
+
+class _StreamHomePageState extends State<StreamHomePage> {
+  ...
+  int lastNumber = 0;
+  late StreamController numberStreamController;
+  late NumberStream numberStream;
+
+  @override
+  void initState() {
+    super.initState();
+    // colorStream = ColorStream();
+    // changeColor();
+    numberStream = NumberStream();
+    numberStreamController = numberStream.controller;
+    Stream stream = numberStreamController.stream;
+    stream.listen((event) {
+      setState(() {
+        lastNumber = event;
+      });
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+   ...
+  }
+
+  void changeColor() async {
+   ...
+  }
+
+  @override
+  void dispose() {
+    numberStreamController.close();
+    super.dispose();
+  }
+}
+```
+
+## Langkah 10: Tambah method addRandomNumber()
+
+main.dart:
+
+```dart
+void addRandomNumber() {
+  Random random = Random();
+  int myNum = random.nextInt(10);
+  numberStream.addNumberToSink(myNum);
+}
+```
+
+## Langkah 11: Edit method build()
+
+
+```dart
+
+class _StreamHomePageState extends State<StreamHomePage> {
+  ...
+
+  @override
+  void initState() {
+   ...
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+        appBar: AppBar(
+          title: const Text('Strem Ziedny'),
+        ),
+        body: SizedBox(
+          width: double.infinity,
+          child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Text(lastNumber.toString()),
+                ElevatedButton(
+                  onPressed: () => addRandomNumber(),
+                  child: const Text("New Random Number"),
+                )
+              ]),
+        ));
+  }
+
+  void changeColor() async {
+   ...
+  }
+
+  @override
+  void dispose() {
+  ...
+  }
+
+  void addRandomNumber() {
+  ...
+  }
+}
+
+```
+
+## Langkah 12: Run
+
+![](imgs/prak2.gif)
+
+## Soal 6
+- Jelaskan maksud kode langkah 8 dan 10 tersebut!
+- Capture hasil praktikum Anda berupa GIF dan lampirkan di README.
+- Lalu lakukan commit dengan pesan "W13: Jawaban Soal 6".
+
+**jawaban**
+
+yang terjadi adalah kita membuat instance dari NumberStream sehingga dapat menggunakan fungsi dan variable di dalamnya pada fungsi initState, kemudian pada void dispose dilakukan close
