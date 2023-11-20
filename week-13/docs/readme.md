@@ -830,3 +830,109 @@ main.dart
 **Jawaban**
 
 memberi value variable subscribtion yang akan melakukan listen, kemudian pada eethod dispose untuk menghentikan maka dilakukan cancel,dan pada add random number jika di klik ketika sudah di close yang ditampilkan adalah -1
+
+# Praktikum 5: Multiple stream subscriptions
+
+## Langkah 1: Buka file main.dart
+
+main.dart:
+```dart
+class _StreamHomePageState extends State<StreamHomePage> {
+  late StreamSubscription subscription2;
+  String values = '';
+```
+
+## Langkah 2: Edit initState()
+
+main.dart:
+```dart
+ @override
+  void initState() {
+    super.initState();
+    ...
+
+    subscription = stream.listen((event) {
+      setState(() {
+        values += '$event - ';
+      });
+    });
+
+    subscription2 = stream.listen((event) {
+      setState(() {
+        values += '$event - ';
+      });
+    });
+
+    ...
+  }
+
+```
+
+## Langkah 3: Run
+
+![Alt text](image-1.png)
+
+
+## Soal 10
+Jelaskan mengapa error itu bisa terjadi ?
+
+**Jawaban**
+
+ini dikarenakan stream.listen dilakukan lebih dari satu kali
+
+## Langkah 4: Set broadcast stream
+
+main.dart
+
+```dart
+  @override
+  void initState() {
+    super.initState();
+    ...
+    Stream stream = numberStreamController.stream.asBroadcastStream();
+```
+
+## Langkah 5: Edit method build()
+
+```dart
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+        appBar: AppBar(
+          title: const Text('Strem Ziedny'),
+        ),
+        body: SizedBox(
+          width: double.infinity,
+          child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Text(values),
+                Text(lastNumber.toString()),
+                ElevatedButton(
+                  onPressed: () => addRandomNumber(),
+                  child: const Text("New Random Number"),
+                ),
+                ElevatedButton(
+                  onPressed: () => stopStream(),
+                  child: const Text("Stop Subscribtion"),
+                )
+              ]),
+        ));
+  }
+```
+
+## Langkah 6: Run
+
+![](imgs/prak5.gif)
+
+## Soal 11
+- Jelaskan mengapa hal itu bisa terjadi ?
+- Capture hasil praktikum Anda berupa GIF dan lampirkan di README.
+- Lalu lakukan commit dengan pesan "W13: Jawaban Soal 10,11".
+
+**Jawaban**
+
+sekarang tidak error walau dilakukan listen lebih dari 1 kali kal ini terjadi karena .asBroadcastStream()
+
