@@ -573,3 +573,93 @@ main.dart:
 **Jawaban**
 
 kita sengaja melakukan error pada addRandomNumber ketika di klik, akan error dan dijalankan oleh onError yang akan membuat angka -1 ditampilkan 
+
+# Praktikum 3: Injeksi data ke streams
+
+## Langkah 1: Buka main.dart
+
+main.dart:
+
+```dart
+class _StreamHomePageState extends State<StreamHomePage> {
+
+  late StreamTransformer transformer;
+```
+
+## Langkah 2: Tambahkan kode ini di initState
+
+main.dart
+
+```dart
+  @override
+  void initState() {
+    super.initState();
+    ...
+    transformer = StreamTransformer<int, int>.fromHandlers(
+        handleData: (value, sink) {
+          sink.add(value * 10);
+        },
+        handleError: (error, trace, sink) {
+          sink.add(-1);
+        },
+        handleDone: (sink) => sink.close());
+  }
+
+```
+
+## Langkah 3: Tetap di initState
+
+```dart
+
+  @override
+  void initState() {
+    super.initState();
+    // colorStream = ColorStream();
+    // changeColor();
+    numberStream = NumberStream();
+    numberStreamController = numberStream.controller;
+    Stream stream = numberStreamController.stream;
+
+    transformer = StreamTransformer<int, int>.fromHandlers(
+        handleData: (value, sink) {
+          sink.add(value * 10);
+        },
+        handleError: (error, trace, sink) {
+          sink.add(-1);
+        },
+        handleDone: (sink) => sink.close());
+
+    stream.transform(transformer).listen((event) {
+      setState(() {
+        lastNumber = event;
+      });
+    }).onError((error) {
+      setState(() {
+        lastNumber = -1;
+      });
+    });
+  }
+```
+
+```dart
+  void addRandomNumber() {
+    Random random = Random();
+    int myNum = random.nextInt(10);
+    numberStream.addNumberToSink(myNum);
+  }
+```
+
+## Langkah 4: Run
+
+## Soal 8
+- Jelaskan maksud kode langkah 1-3 tersebut!
+- Capture hasil praktikum Anda berupa GIF dan lampirkan di README.
+- Lalu lakukan commit dengan pesan "W13: Jawaban Soal 8".
+
+**jawaban**
+
+kurang lebih sama namun ada trasnsformer yang akan mengubah hasil menjadi * 10
+
+![](imgs/prak3.gif)
+
+//TODO: Commit prak 3 bawaj
