@@ -4,6 +4,7 @@
 
 ## Langkah 2: Buka file main.dart
 
+main.dart:
 ```dart
 import 'package:flutter/material.dart';
 
@@ -49,6 +50,7 @@ class _StreamHomePageState extends State<StreamHomePage> {
 
 ## Langkah 3: Buat file baru stream.dart
 
+stream.dart:
 ```dart
 import 'package:flutter/material.dart';
 
@@ -59,6 +61,7 @@ class ColorStream {
 
 ## Langkah 4: Tambah variabel colors
 
+stream.dart:
 ```dart
 class ColorStream {
   final List<Color> colors = [
@@ -77,12 +80,14 @@ class ColorStream {
 
 ## Langkah 5: Tambah method getColors()
 
+stream.dart:
 ```dart
   Stream<Color> getColors() async* {}
 ```
 
 ## Langkah 6: Tambah perintah yield*
 
+stream.dart:
 ```dart
  Stream<Color> getColors() async* {
     yield* Stream.periodic(
@@ -101,5 +106,129 @@ class ColorStream {
 
 **Jawaban**
 
-
 Keyword yield* pada kode tersebut digunakan untuk menghasilkan nilai dari stream lain. Dalam kasus ini, nilai yang dihasilkan adalah nilai dari stream Stream.periodic(). Stream Stream.periodic() akan menghasilkan nilai baru setiap detik.
+
+## Langkah 7: Buka main.dart
+
+main.dart:
+```dart
+import 'stream.dart';
+```
+
+## Langkah 8: Tambah variabel
+
+main.dart
+```dart
+class _StreamHomePageState extends State<StreamHomePage> {
+  Color bgColor = Colors.blueGrey;
+  late ColorStream colorStream;
+  @override
+  Widget build(BuildContext context) {
+    return Container();
+  }
+}
+```
+
+## Langkah 9: Tambah method changeColor()
+
+main.dart
+
+```dart
+
+class _StreamHomePageState extends State<StreamHomePage> {
+  Color bgColor = Colors.blueGrey;
+  late ColorStream colorStream;
+  @override
+  Widget build(BuildContext context) {
+    return Container();
+  }
+
+  void changeColor() async {
+    await for (var eventColor in colorStream.getColors()) {
+      setState(() {
+        bgColor = eventColor;
+      });
+    }
+  }
+}
+
+```
+
+## Langkah 10: Lakukan override initState()
+
+main.dart
+
+```dart
+class StreamHomePage extends StatefulWidget {
+  const StreamHomePage({super.key});
+
+  @override
+  State<StreamHomePage> createState() => _StreamHomePageState();
+}
+
+class _StreamHomePageState extends State<StreamHomePage> {
+  Color bgColor = Colors.blueGrey;
+  late ColorStream colorStream;
+
+  @override
+  void initState() {
+    super.initState();
+    colorStream = ColorStream();
+    changeColor();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Container();
+  }
+
+  void changeColor() async {
+    await for (var eventColor in colorStream.getColors()) {
+      setState(() {
+        bgColor = eventColor;
+      });
+    }
+  }
+}
+```
+
+## Langkah 11: Ubah isi Scaffold()
+
+main.dart
+
+```dart
+class _StreamHomePageState extends State<StreamHomePage> {
+  Color bgColor = Colors.blueGrey;
+  late ColorStream colorStream;
+
+  @override
+  void initState() {
+  ...
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Strem'),
+      ),
+      body: Container(
+        decoration: BoxDecoration(color: bgColor),
+      ),
+    );
+  }
+
+  void changeColor() async {
+    ...
+  }
+}
+```
+
+## Langkah 12: Run
+
+## Soal 4
+- Capture hasil praktikum Anda berupa GIF dan lampirkan di README.
+- Lakukan commit hasil jawaban Soal 4 dengan pesan "W13: Jawaban Soal 4"
+
+![](imgs/prak%201.gif)
+
