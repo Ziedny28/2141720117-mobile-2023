@@ -510,3 +510,66 @@ class _StreamHomePageState extends State<StreamHomePage> {
 **jawaban**
 
 yang terjadi adalah kita membuat instance dari NumberStream sehingga dapat menggunakan fungsi dan variable di dalamnya pada fungsi initState, kemudian pada void dispose dilakukan close
+
+## Langkah 13: Buka stream.dart
+
+stream.dart:
+
+```dart
+class NumberStream {
+  ...
+
+  addError() {
+    controller.sink.addError('error');
+  }
+}
+
+```
+
+## Langkah 14: Buka main.dart
+
+main.dart:
+
+```dart
+  @override
+  void initState() {
+    super.initState();
+    // colorStream = ColorStream();
+    // changeColor();
+    numberStream = NumberStream();
+    numberStreamController = numberStream.controller;
+    Stream stream = numberStreamController.stream;
+    stream.listen((event) {
+      setState(() {
+        lastNumber = event;
+      });
+    }).onError((error) {
+      setState(() {
+        lastNumber = -1;
+      });
+    });
+  }
+```
+
+## Langkah 15: Edit method addRandomNumber()
+
+main.dart:
+
+```dart
+ void addRandomNumber() {
+    Random random = Random();
+    // int myNum = random.nextInt(10);
+    // numberStream.addNumberToSink(myNum);
+
+    numberStream.addError();
+  }
+```
+
+## Soal 7
+- Jelaskan maksud kode langkah 13 sampai 15 tersebut!
+- Kembalikan kode seperti semula pada Langkah 15, comment addError() agar Anda dapat melanjutkan ke praktikum 3 berikutnya.
+- Lalu lakukan commit dengan pesan "W13: Jawaban Soal 7".
+
+**Jawaban**
+
+kita sengaja melakukan error pada addRandomNumber ketika di klik, akan error dan dijalankan oleh onError yang akan membuat angka -1 ditampilkan 
