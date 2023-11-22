@@ -1216,3 +1216,234 @@ class _StreamHomePageState extends State<StreamHomePage> {
 StreamBuilder menampilkan angka random setiap detik.
 
 Kode menggunakan StreamBuilder widget, StreamBuilder widget menampilkan data dari stream, Stream dalam kode tersebut menghasilkan angka random setiap detik.
+
+# Praktikum 7: BLoC Pattern
+
+## Langkah 1: Buat Project baru
+
+## Langkah 2: Isi kode random_bloc.dart
+
+```dart
+import 'dart:async';
+import 'dart:math';
+```
+
+## Langkah 3: Buat class RandomNumberBloc()
+
+```dart
+class RandomNumberBloc {}
+```
+
+## Langkah 4: Buat variabel StreamController
+
+```dart
+class RandomNumberBloc {
+  final _generateRandomController = StreamController<void>();
+
+  final _randomNumberController = StreamController<int>();
+
+  Sink<void> get generateRandom => _generateRandomController.sink;
+
+  Stream<int> get randomNumber => _randomNumberController.stream;
+
+  final _secondStreamController = StreamController<int>();
+
+  Sink<void> getSecondStreamSink() {
+    return _secondStreamController.sink;
+  }
+}
+```
+
+## Langkah 5: Buat constructor
+
+```dart
+
+class RandomNumberBloc {
+  final _generateRandomController = StreamController<void>();
+
+  final _randomNumberController = StreamController<int>();
+
+  Sink<void> get generateRandom => _generateRandomController.sink;
+
+  Stream<int> get randomNumber => _randomNumberController.stream;
+
+  final _secondStreamController = StreamController<int>();
+
+  Sink<void> getSecondStreamSink() {
+    return _secondStreamController.sink;
+  }
+
+  RandomNumberBloc() {
+    _generateRandomController.stream.listen((_) {
+      final random = Random().nextInt(10);
+      _randomNumberController.sink.add(random);
+    });
+  }
+}
+
+```
+
+## Langkah 6: Buat method dispose()
+
+```dart
+class RandomNumberBloc {
+  final _generateRandomController = StreamController<void>();
+
+  final _randomNumberController = StreamController<int>();
+
+  Sink<void> get generateRandom => _generateRandomController.sink;
+
+  Stream<int> get randomNumber => _randomNumberController.stream;
+
+  final _secondStreamController = StreamController<int>();
+
+  Sink<void> getSecondStreamSink() {
+    return _secondStreamController.sink;
+  }
+
+  RandomNumberBloc() {
+    _generateRandomController.stream.listen((_) {
+      final random = Random().nextInt(10);
+      _randomNumberController.sink.add(random);
+    });
+  }
+
+  void dispose() {
+    _generateRandomController.close();
+    _randomNumberController.close();
+  }
+}
+
+```
+
+## Langkah 7: Edit main.dart
+main.dart:
+```dart
+
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  // This widget is the root of your application.
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Flutter Demo',
+      theme: ThemeData(
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        useMaterial3: true,
+      ),
+      home: const StreamHomeaPage(),
+    );
+  }
+}
+```
+
+## Langkah 8: Buat file baru random_screen.dart
+
+## Langkah 9: Lakukan impor material dan random_bloc.dart
+
+random_screen.dart:
+```dart
+import 'package:flutter/material.dart';
+import 'random_bloc.dart';
+```
+
+## Langkah 10: Buat StatefulWidget RandomScreen
+
+```dart
+
+class StreamHomeaPage extends StatefulWidget {
+  const StreamHomeaPage({super.key});
+
+  @override
+  State<StreamHomeaPage> createState() => _StreamHomeaPageState();
+}
+
+class _StreamHomeaPageState extends State<StreamHomeaPage> {
+  @override
+  Widget build(BuildContext context) {
+    return Container();
+  }
+}
+```
+
+## Langkah 11: Buat variabel
+
+```dart
+  final RandomNumberBloc _bloc = RandomNumberBloc();
+```
+
+##  Langkah 12: Buat method dispose()
+
+random_screen.dart:
+
+```dart
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    _bloc.dispose();
+    super.dispose();
+  }
+```
+
+## Langkah 13: Edit method build()
+
+random_screen.dart:
+
+```dart
+import 'package:flutter/material.dart';
+
+import 'random_bloc.dart';
+
+class StreamHomeaPage extends StatefulWidget {
+  const StreamHomeaPage({super.key});
+
+  @override
+  State<StreamHomeaPage> createState() => _StreamHomeaPageState();
+}
+
+class _StreamHomeaPageState extends State<StreamHomeaPage> {
+  final RandomNumberBloc _bloc = RandomNumberBloc();
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: const Text('Random Number')),
+      body: Center(
+        child: StreamBuilder<int>(
+            stream: _bloc.randomNumber,
+            initialData: 0,
+            builder: (context, snapshot) {
+              return Text(
+                'Random Number: ${snapshot.data}',
+                style: const TextStyle(fontSize: 24),
+              );
+            }),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () => _bloc.generateRandom.add(null),
+        child: const Icon(Icons.refresh),
+      ),
+    );
+  }
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    _bloc.dispose();
+    super.dispose();
+  }
+}
+
+```
+
+## Soal 13
+- Jelaskan maksud praktikum ini ! Dimanakah letak konsep pola BLoC-nya ?
+- Capture hasil praktikum Anda berupa GIF dan lampirkan di README.
+- Lalu lakukan commit dengan pesan "W13: Jawaban Soal 13".
+
+**Jawaban**
+
+konsep BloC(Business Logic Component) terimplementasi pada RandomNumberBloc, dimulai dari  pembuatan instance, menggunakan sink, dan subscribe ke randomNumber sream  
+
+![](imgs/prak7.gif)
